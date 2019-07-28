@@ -179,4 +179,42 @@ public class MovementManager : MonoBehaviour
             Decoder.coords.Add($"h{i}", new Vector3(6, 0, i - 1));
         }
     }
+
+    public static bool CellIsUsedByWhitePiece(Vector3 point)
+    {
+        if(point.x > 7 || point.x < 0 || point.z > 7 || point.z < 0)
+        {
+            return false;
+        }
+        foreach(Transform piece in whitePieces)
+        {
+            if(piece.position == point)
+            {
+                if(piece.gameObject.activeSelf)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static bool CellIsUsedByBlackPiece(Vector3 point)
+    {
+        if (point.x > 7 || point.x < 0 || point.z > 7 || point.z < 0)
+        {
+            return false;
+        }
+        foreach (Transform piece in blackPieces)
+        {
+            if (piece.position == point)
+            {
+                if (piece.gameObject.activeSelf)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
